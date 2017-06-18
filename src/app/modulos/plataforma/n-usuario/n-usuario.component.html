@@ -1,0 +1,105 @@
+<div class="container">
+<h1 for="">Nuevo Usuario</h1>
+    <div class="row">
+        <div class="col-sm-3">
+          <form action="" (ngSubmit)="onSubmit()"  #usuarioR="ngForm" >
+  
+            <h2>Nuevo Usuario</h2>
+        <md-input-container >
+            <input mdInput placeholder="Nombre de usuario" type="text"  [(ngModel)]="cliente.username" ngControl="usuario" name="usuario" required >
+        </md-input-container>
+        <md-input-container >
+            <input mdInput placeholder="Contraseña" type="text"  [(ngModel)]="cliente.password" ngControl="clave" name="clave" required >
+        </md-input-container>
+        <md-input-container >
+            <input mdInput placeholder="Nombre(s)" type="text"  [(ngModel)]="cliente.nombre" ngControl="nombre" name="nombre" required >
+        </md-input-container>
+        <md-input-container >
+            <input mdInput placeholder="Apellido Paterno" type="text"  [(ngModel)]="cliente.paterno" ngControl="paterno" name="paterno" required >
+        </md-input-container>
+        <md-input-container >
+            <input mdInput placeholder="Apellido Materno" type="text"  [(ngModel)]="cliente.materno" ngControl="materno" name="materno" required >
+        </md-input-container>
+        <md-input-container >
+            <input mdInput placeholder="Email" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" type="text"  [(ngModel)]="cliente.email" ngControl="email" name="email" required >
+        </md-input-container>
+        <md-input-container >
+            <input mdInput placeholder="Fecha" type="date"  [(ngModel)]="cliente.fecnac" ngControl="fecha" name="fecha" required >
+        </md-input-container>
+        <md-input-container >
+            <input mdInput placeholder="Celular" type="number"  [(ngModel)]="cliente.celular" ngControl="celular" name="celular"  >
+        </md-input-container>
+        <br>
+         <button type="submit" md-raised-button color="primary">Registrar</button>
+
+        </form>
+        <div>
+            <label for="">Datos ingresados</label><br>
+            <label for="">{{cliente.username}}</label><br>
+            <label for="">{{cliente.password}}</label><br>
+            <label for="">{{cliente.nombre}}</label><br>
+            <label for="">{{cliente.paterno}}</label><br>
+            <label for="">{{cliente.materno}}</label><br>
+            <label for="">{{cliente.email}}</label><br>
+            <label for="">{{cliente.fecnac}}</label><br>
+            <label for="">{{cliente.celular}}</label>
+
+        </div>
+
+        </div>
+        <div class="col-sm-6 ">
+            <h2 class="center">Lista de usuario</h2>
+            <button md-raised-button color="primary" type="button" (click)="getUsuarios()"   >Obtener Usuarios</button>
+            <div *ngFor="let a of clientes" (click)="editar(a.username,a.email,a.nombre,a.paterno,a.materno,a.fecha_nacimiento,a.celular)">
+            
+                    username: {{a.username}}<br>
+                    email: {{a.email}}<br>
+                    nombre: {{a.nombre}}<br>
+                    paterno: {{a.paterno}}<br>
+                    materno: {{a.materno}}<br>
+                    fecha de nacimiento: {{a.fecha_nacimiento}}<br>
+                    celular: {{a.celular}}<br>
+                    
+                <input type="button" (click)="deleteUsuario(a.username)" value="Borrar">
+                
+      
+      </div>    
+             
+        </div>
+        <div class="col-sm-3">
+            <h2>Editar Usuario</h2>
+
+        <md-input-container >
+            <input mdInput placeholder="Nombre de usuario" type="text"  [(ngModel)]="clienteUpdate.username" ngControl="usuario" name="usuario" required >
+        </md-input-container>
+        <md-input-container >
+            <input mdInput placeholder="Contraseña" type="text"  [(ngModel)]="clienteUpdate.password" ngControl="clave" name="clave" required >
+        </md-input-container>
+        <md-input-container >
+            <input mdInput placeholder="Nombre(s)" type="text"  [(ngModel)]="clienteUpdate.nombre" ngControl="nombre" name="nombre" required >
+        </md-input-container>
+        <md-input-container >
+            <input mdInput placeholder="Apellido Paterno" type="text"  [(ngModel)]="clienteUpdate.paterno" ngControl="paterno" name="paterno" required >
+        </md-input-container>
+        <md-input-container >
+            <input mdInput placeholder="Apellido Materno" type="text"  [(ngModel)]="clienteUpdate.materno" ngControl="materno" name="materno" required >
+        </md-input-container>
+        <md-input-container >
+            <input mdInput placeholder="Email" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" type="text"  [(ngModel)]="clienteUpdate.email" ngControl="email" name="email" required >
+        </md-input-container>
+        <md-input-container >
+            <input mdInput placeholder="Fecha" type="date"  [(ngModel)]="clienteUpdate.fecha_nacimiento" ngControl="fecha" name="fecha" required >
+        </md-input-container>
+        <md-input-container >
+            <input mdInput placeholder="Celular" type="number"  [(ngModel)]="clienteUpdate.celular" ngControl="celular" name="celular"  >
+        </md-input-container>
+        <br>
+         <button type="button" (click)="editarUsuario()" md-raised-button color="primary">Actualizar</button>
+
+            
+        </div>
+    
+    </div> 
+
+
+</div>

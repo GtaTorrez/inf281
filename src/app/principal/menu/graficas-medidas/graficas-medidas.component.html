@@ -1,0 +1,159 @@
+
+<div class="container">
+    <div *ngIf="!historico" class="row" >
+ <md-spinner *ngIf="cargando"></md-spinner>
+ 
+      <h2>Grafica de temperatura</h2>
+
+
+      <div class="col-sm-6" style="width: 500px; height: 300px;" >
+      <div>
+        <md-card *ngFor="let l of locations;index as i" class="panel panel-default">
+          <md-card-header >
+            <div md-card-avatar class="example-header-image"></div>
+            <md-card-subtitle>{{l.lugar}},{{l.departamento}},  {{l.Latitud}},{{l.Longitud}}</md-card-subtitle>
+          </md-card-header>
+           <button *ngIf="!l.ver" md-button type="button" (click)="visibleMap(i)" ><md-icon>location_on</md-icon>Ver Posicion</button>
+           <button *ngIf="l.ver" md-button type="button" (click)="visibleMap(i)" ><md-icon>location_off</md-icon>Ocultar</button>
+           <button  md-button type="button" (click)="selected(l.lugar,l.departamento)" ><md-icon>show_chart</md-icon>Ver Graficas</button>
+         
+          <md-card-content>
+          </md-card-content>
+          <md-card-actions>
+           
+          </md-card-actions>
+          <div *ngIf="l.ver" >
+          <button (click)="plus()">+</button>
+          <button (click)="less()">-</button>
+          <sebm-google-map  
+              [latitude]="l.Latitud"
+              [longitude]="l.Longitud"
+              [zoom]="13"
+              [disableDefaultUI]="false"
+              [zoomControl]="false"
+              (mapClick)="mapClicked($event)" >
+          <sebm-google-map-marker 
+                  [latitude]="l.Latitud"
+                  [longitude]="l.Longitud"
+                  [label]="l.Lugar"
+              [label]="m.label"
+              [markerDraggable]="false"
+              
+          ></sebm-google-map-marker>
+        </sebm-google-map>
+        </div>
+        </md-card>  
+        
+      </div>
+      
+      </div>
+
+    <div>
+      <h2>{{locacionS.lugar}}</h2>
+
+    </div>
+
+    <div class="col-sm-6" style="width: 600px; height: 400px;">
+        
+        <md-radio-group name="tipos" [(ngModel)]="selectedRadio">
+          <md-radio-button  *ngFor="let t of tipoTR" [value]="t.value">
+            {{t.viewValue}}
+          </md-radio-button>
+        </md-radio-group>
+        {{selectedRadio}}
+
+        <button md-button (click)="getDatosTRT()" ><md-icon>equalizer</md-icon>Generar</button>
+
+        <button md-button (click)="tiempoReal()" ><md-icon>equalizer</md-icon>{{btnTR}}</button>
+        
+
+      <div style="background-color: #fff" >
+        <div style="display: block; right: 30%">
+        <canvas baseChart  width="600" height="350"
+                    [datasets]="lineChartData"
+                    [labels]="lineChartLabels"
+                    [options]="lineChartOptions"
+                    [colors]="lineChartColors"
+                    [legend]="lineChartLegend"
+                    [chartType]="lineChartType"
+                    (chartHover)="chartHovered($event)"
+                    (chartClick)="chartClicked($event)">
+                    </canvas>
+        </div>
+      
+    </div>
+    </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+    
+      <div *ngIf="historico" class="row">
+          <md-radio-group name="tipos" [(ngModel)]="selectedRadioh">
+          <md-radio-button  *ngFor="let t of tipoTR" [value]="t.value">
+            {{t.viewValue}}
+          </md-radio-button>
+        </md-radio-group>
+        {{selectedRadioh}}
+      </div>
+
+      <div class="row">
+        <div class="col-sm-4">
+          
+        </div>
+
+        <div class="col-sm-8">
+
+        </div>
+
+
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div *ngIf="false" class="row" >
+<div class="col-md-3">
+   
+        <button (click)="plus()">+</button>
+      <button (click)="less()">-</button>
+      <sebm-google-map [latitude]="lat" 
+          [longitude]="lng"      
+          [latitude]="lat"
+          [longitude]="lng"
+          [zoom]="zoom"
+          [disableDefaultUI]="false"
+          [zoomControl]="false"
+          (mapClick)="mapClicked($event)" >
+      <sebm-google-map-marker 
+              *ngFor="let m of markers; let i = index"
+              (markerClick)="clickedMarker(m.label, i)"
+              [latitude]="m.lat"
+              [longitude]="m.lng"
+              [label]="m.label"
+              [markerDraggable]="m.draggable"
+              (dragEnd)="markerDragEnd(m, $event)"
+              ></sebm-google-map-marker>
+    </sebm-google-map>
+    <label for="">Latitud: {{latM}} </label>
+    <label for="">Longitud: {{lngM}} </label>
+
+</div>
+
+</div>

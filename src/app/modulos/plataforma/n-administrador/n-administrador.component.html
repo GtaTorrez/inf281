@@ -1,0 +1,157 @@
+
+    <div class="row" (click)="nuevoAdmin()">
+        <div class="col-sm-6">
+        <button md-fab color="primary" (click)="sidenav.open()" ><md-icon>add</md-icon></button>
+        <button md-raised-button color="primary" type="button" (click)="getAdmins()"   >Obtener Usuarios</button>
+    
+        </div>
+        <div class="col-sm-6" >
+            <md-spinner *ngIf="cargando" ></md-spinner> 
+        </div>
+        
+    </div>
+   
+<md-sidenav-container class="contenido">
+  
+  <md-sidenav #sidenav  class="col-sm-4">
+      <div *ngIf="!isUpdate">
+
+        <form action="" (ngSubmit)="onSubmit()"  #loginForm="ngForm" >
+          <h2>Nuevo administrador</h2>
+        <md-input-container >
+            <input mdInput placeholder="Item" type="number"  [(ngModel)]="admin.item" ngControl="item" name="item"  required >
+        </md-input-container>
+        <md-input-container >
+            <input mdInput placeholder="Contraseña" type="text"  [(ngModel)]="admin.password" ngControl="clave" name="clave" required >
+        </md-input-container>
+        <md-select placeholder="Tipo de Administrador" [(ngModel)]="admin.tipo" name="tipo">
+            <md-option *ngFor="let tip of TipoAd" [value]="tip.value" >
+                {{ tip.viewValue }}
+            </md-option>
+        </md-select><br>
+        <md-input-container >
+            <input mdInput placeholder="Nombre(s)" type="text"   [(ngModel)]="admin.nombre" ngControl="nombre" name="nombre"  required >
+        </md-input-container>
+        <md-input-container >
+            <input mdInput placeholder="Apellido Paterno" type="text"   [(ngModel)]="admin.paterno" ngControl="paterno" name="paterno"  required >
+        </md-input-container>
+        <md-input-container >
+            <input mdInput placeholder="Apellido Materno"  type="text"  [(ngModel)]="admin.materno" ngControl="materno" name="materno"  required >
+        </md-input-container>
+        <md-input-container >
+            <input mdInput placeholder="Email" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" type="text"  [(ngModel)]="admin.email" ngControl="email" name="email" required >
+        </md-input-container>
+        <md-input-container >
+            <input mdInput placeholder="Celular" type="number"  [(ngModel)]="admin.celular" ngControl="celular" name="celular"  required  >
+        </md-input-container>
+        <md-input-container >
+            <input mdInput placeholder="Ocupación" type="text"  [(ngModel)]="admin.ocupacion" ngControl="ocupacion" name="ocupacion" required >
+        </md-input-container>
+        <md-input-container >
+            <input mdInput placeholder="Cedula de Identidad" type="number"  [(ngModel)]="admin.ci" ngControl="ci" name="ci" required >
+        </md-input-container>
+        <md-select #expedido placeholder="Expedido" [(ngModel)]="admin.expedido" name="expedido">
+            <md-option *ngFor="let tipo of Expedido" [value]="tipo.value" >
+                {{ tipo.viewValue }}
+            </md-option>
+        </md-select><br>
+        <br>
+         <button type="submit" md-raised-button color="primary">Registrar</button>
+           </form>         
+
+      </div>
+
+
+      <div *ngIf="isUpdate" >
+                    <h2>Actualizar Datos</h2>
+        <md-input-container >
+            <input mdInput placeholder="Item" type="number"  [(ngModel)]="adminUpdate.item" ngControl="item" name="item" required >
+        </md-input-container>
+        <md-select placeholder="Tipo de Administrador" [(ngModel)]="adminUpdate.tipo" name="tipo">
+            <md-option *ngFor="let tip of TipoAd" [value]="tip.value" >
+                {{ tip.viewValue }}
+            </md-option>
+        </md-select><br>
+        <md-input-container >
+            <input mdInput placeholder="Nombre(s)" type="text"  [(ngModel)]="adminUpdate.nombre" ngControl="nombre" name="nombre" required  pattern="[A-Za-z]*">
+        </md-input-container>
+        <md-input-container >
+            <input mdInput placeholder="Apellido Paterno" type="text"  [(ngModel)]="adminUpdate.paterno" ngControl="paterno" name="paterno" required pattern=A-Za-z />
+        </md-input-container>
+        <md-input-container >
+            <input mdInput placeholder="Apellido Materno" type="text"  [(ngModel)]="adminUpdate.materno" ngControl="materno" name="materno" required pattern="[A-Za-z]*">
+        </md-input-container>
+        <md-input-container >
+            <input mdInput placeholder="Email" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" type="text"  [(ngModel)]="adminUpdate.email" ngControl="email" name="email" required >
+        </md-input-container>
+        <md-input-container >
+            <input mdInput placeholder="Celular" type="number"  [(ngModel)]="adminUpdate.celular" ngControl="celular" name="celular" required >
+        </md-input-container>
+        <md-input-container >
+            <input mdInput placeholder="Ocupación" type="text"  [(ngModel)]="adminUpdate.ocupacion" ngControl="ocupacion" name="ocupacion" required >
+        </md-input-container>
+        <md-input-container >
+            <input mdInput placeholder="Cedula de Identidad" type="number"  [(ngModel)]="adminUpdate.ci" ngControl="ci" name="ci" required >
+        </md-input-container>
+        <md-select placeholder="Expedido" [(ngModel)]="adminUpdate.expedido" name="nexpedido">
+            <md-option *ngFor="let tip of Expedido" [value]="tip.value" >
+                {{ tip.viewValue }}
+            </md-option>
+        </md-select><br>
+
+
+
+        <br>
+         <button type="submit"  md-raised-button (click)="editarAdmin()" color="primary">Actualizar</button>
+
+      </div>
+
+  </md-sidenav>
+
+
+  <div class="col-sm-6 contenido">
+
+    <button md-button (click)="sidenav.open()">
+      Open sidenav
+    </button>
+
+      <div >
+     
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Tipo de Usuario</th>
+                    <th>Nombre</th>
+                    <th>Paterno</th>
+                    <th>Email</th>
+                    <th>Celular</th>
+                    <th>Ocupacion</th>
+                    <th>CI</th>
+                    <th>Expedido</th>                    
+                    <th>Borrar</th>
+                    <th>Actualizar Datos</th>
+                </tr>
+                </thead>
+            <tbody>
+                <tr *ngFor="let a of admins"  > 
+                    <td>{{a.item}}</td>
+                    <td>{{a.tipo}}</td>
+                    <td>{{a.nombre}}</td>
+                    <td>{{a.paterno}}</td>
+                    <td>{{a.email}}</td>
+                    <td>{{a.celular}}</td>
+                    <td>{{a.ocupacion}}</td>
+                    <td>{{a.ci}}</td>
+                    <td>{{a.expedido}}</td>
+
+                    <td><input type="button" (click)="deleteAdmin(a.item)" value="Borrar"></td>    
+                    <td (click)="sidenav.open()"><input type="button" (click)="editar(a.item,a.password,a.tipo,a.nombre,a.paterno,a.materno,a.email,a.celular,a.ocupacion,a.ci,a.expedido)" value="Actualizar"></td>    
+                </tr>
+            </tbody>
+        </table>
+      </div>
+  </div>
+
+</md-sidenav-container>
+

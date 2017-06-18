@@ -1,0 +1,11 @@
+.sebm-google-map-container {
+  height: 250px;
+}
+md-spinner{
+    width: 35px;
+    float: right;
+    right: 30%;
+}
+md-tab-group{
+  height: 700px;
+}

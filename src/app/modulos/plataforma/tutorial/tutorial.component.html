@@ -1,0 +1,239 @@
+ <div class="row" (click)="nuevoTutorial()">
+        <div class="col-sm-6">
+        <button md-fab color="primary" (click)="sidenav.open()" ><md-icon>add</md-icon></button>
+        <button md-raised-button color="primary" type="button" (click)="getContenido()"   >Obtener Tutoriales</button>
+    
+        </div>
+        <div class="col-sm-6" >
+            <md-spinner *ngIf="cargando" ></md-spinner> 
+        </div>
+        
+    </div>
+   
+<md-sidenav-container class="contenido">
+  
+  <md-sidenav #sidenav  class="col-sm-4">
+      <div *ngIf="!isUpdate" >
+        <h3>Nuevo tutorial</h3>
+        <form action="" #plataformaForm="ngForm" (ngSubmit)="onSubmit()">
+            <md-input-container>
+              <input mdInput type="text" [(ngModel)]="tutorial.Titulo" name="Titulo" placeholder="Titulo"><br>  
+            </md-input-container> 
+            
+            <md-input-container class="full-width">
+              <textarea mdInput mdTextareaAutosize  type="text" [(ngModel)]="tutorial.resumen" name="resumen" placeholder="Resumen"></textarea>  <br>
+            </md-input-container>
+
+            <md-input-container class="full-width">
+              <textarea mdInput mdTextareaAutosize  type="text" [(ngModel)]="tutorial.Descripcion" name="Descripcion" placeholder="Descripcion"></textarea>  <br>
+            </md-input-container> 
+            
+          
+            <button md-raised-button color="primary" type="submit" >Actualizar</button>
+
+      </form>
+      </div>
+      <div *ngIf="isUpdate"> 
+        <h3>Actualizar</h3>
+      <md-input-container>
+        <input mdInput type="text" [(ngModel)]="tutorialCambio.Titulo" name="Titulo" placeholder="Titulo"><br>  
+      </md-input-container> 
+      
+      <md-input-container class="full-width">
+        <textarea mdInput mdTextareaAutosize  type="text" [(ngModel)]="tutorialCambio.resumen" name="resumen" placeholder="Resumen"></textarea>  <br>
+      </md-input-container>
+
+      <md-input-container class="full-width">
+        <textarea mdInput mdTextareaAutosize  type="text" [(ngModel)]="tutorialCambio.Descripcion" name="Descripcion" placeholder="Descripcion"></textarea>  <br>
+      </md-input-container> 
+     <br>
+      <button md-raised-button (click)="editarContenido()" color="primary" type="submit" >Actualizar</button>
+
+      </div>
+
+  </md-sidenav>
+
+  <div class="col-sm-6 contenido">
+    <div class="row">
+      <div class="col-sm-6"> 
+        <button md-raised-button color="primary" type="button" (click)="getContenido()"   >Obtener Tutoriales</button>
+
+      <div class="panel panel-success" *ngFor="let i of tutoriales" (click)="editar(i.Titulo,i.Descripcion,i.resumen,i.Tipo)" >
+        <div class="panel-heading">{{i.Titulo}}</div>
+        <div class="panel-body">
+          <div>{{i.Descripcion}}</div>
+          {{i.resumen}}
+        </div>
+
+        <input type="button" (click)="deleteContenido(i.Titulo)" value="Borrar">
+        <div (click)="sidenav.open()"> 
+        <input type="button" (click)="editarContenido()" value="Actualizar">
+        </div>
+        <input type="button" (click)="getTutorialPasos(i.Titulo)" value="Ver Pasos">
+        <input type="button" (click)="agregarPaso(i.Titulo)" value="Agregar Pasos">
+        
+        
+        
+      </div>
+
+
+      </div>
+      <div class="col-sm-6" *ngIf="UpdatePaso" >
+      
+         <md-input-container>
+            <input mdInput type="text" [(ngModel)]="tituloC" name="TituloP" placeholder="Titulo"><br>  
+          </md-input-container> 
+          
+          <md-input-container class="full-width">
+            <textarea mdInput  type="text" [(ngModel)]="paso.subTitulo" name="subtitulos" placeholder="Subtitulo del Paso"></textarea>  <br>
+          </md-input-container>
+          <md-input-container class="full-width">
+            <textarea mdInput  type="number" [(ngModel)]="paso.paso" name="paso" placeholder="Nro Paso"></textarea>  <br>
+          </md-input-container> 
+
+          <md-input-container class="full-width">
+            <textarea mdInput mdTextareaAutosize  type="text" [(ngModel)]="paso.contenido" name="resumen" placeholder="Resumen"></textarea>  <br>
+          </md-input-container> 
+
+          <input type="file" ng-form="file" name="file" [multiple]="multiple" #fileInput> 
+        
+          
+        
+          <button md-raised-button color="primary"  type="button" (click)="postPaso()" >Adicionar Paso</button>
+
+
+
+      </div>
+
+      <div  class="col-sm-6" >
+        <div *ngIf="!UpdatePaso" >
+        <div *ngIf="!isUpPaso">
+          <div  *ngFor="let p of pasos ; index as i"  > 
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <label>Paso: {{p.paso}}</label><br>
+            {{p.subTitulo}}
+          </div>
+            <img src="{{p.enlace}}" alt="" width="200" height="200" >          
+          <div class="panel-body">
+            {{p.contenido}}
+          </div>
+          <button md-raised-button (click)="updatePaso(p.paso,p.subTitulo,p.contenido,p.enlace)" >Editar Datos</button>
+          
+          <button md-raised-button color="primary"  type="button" (click)="deletePaso(p.paso)" >Eliminar</button>
+
+        </div>
+        </div>
+
+        </div>
+        
+        </div>
+      
+
+      <div *ngIf="isUpPaso">
+          <md-input-container class="full-width">
+            <textarea mdInput  type="text" [(ngModel)]="pasoC.subTitulo" name="subtitulos" placeholder="Subtitulo del Paso"></textarea>  <br>
+          </md-input-container>
+          <md-input-container class="full-width">
+            <textarea mdInput  type="number" [(ngModel)]="pasoC.paso" name="paso" placeholder="Nro Paso"></textarea>  <br>
+          </md-input-container> 
+
+          <md-input-container>
+            <input mdInput type="text" [(ngModel)]="tituloC" name="TituloP" placeholder="Titulo"><br>  
+          </md-input-container> 
+          
+
+          <md-input-container class="full-width">
+            <textarea mdInput mdTextareaAutosize  type="text" [(ngModel)]="pasoC.contenido" name="resumen" placeholder="Resumen"></textarea>  <br>
+          </md-input-container> 
+          <label for="">Subir Nueva imagen para reemplazar al actual</label>
+          <input type="file" ng-form="file" name="file" [multiple]="multiple" #fileInputUp> 
+        
+          
+          <button md-raised-button color="primary"  type="button" (click)="updatePasoSN()" >Actualizar Datos</button>
+
+
+      </div>
+
+
+
+      </div>
+    </div>
+  </div>
+
+</md-sidenav-container>
+
+<div class="container ">
+  <h1>tutoriales</h1>
+  <div class="row ">
+<div class="col-sm-3">
+  <h3>Nuevo tutorial</h3>
+  <form action="" #plataformaForm="ngForm" (ngSubmit)="onSubmit()">
+      <md-input-container>
+        <input mdInput type="text" [(ngModel)]="tutorial.Titulo" name="Titulo" placeholder="Titulo"><br>  
+      </md-input-container> 
+      
+      <md-input-container class="full-width">
+        <textarea mdInput mdTextareaAutosize  type="text" [(ngModel)]="tutorial.resumen" name="resumen" placeholder="Resumen"></textarea>  <br>
+      </md-input-container>
+
+      <md-input-container class="full-width">
+        <textarea mdInput mdTextareaAutosize  type="text" [(ngModel)]="tutorial.Descripcion" name="Descripcion" placeholder="Descripcion"></textarea>  <br>
+      </md-input-container> 
+      
+     
+      <button md-raised-button color="primary" type="submit" >Registrar</button>
+
+</form>
+      <br>  
+      <div>
+        <label for="">Datos ingresados</label><br>
+        {{tutorial.Titulo}}<br>
+        {{tutorial.resumen}}<br>
+        {{tutorial.Descripcion}}
+        {{tutorial.Tipo}}
+      </div>
+      <br>
+</div>
+<div class="col-sm-6">
+  <h3>Tutoriales</h3>
+<md-tab-group>
+  <md-tab label="Informacion">
+    <button md-raised-button color="primary" type="button" (click)="getContenido()"   >Obtener Tutoriales</button>
+      <div *ngFor="let i of tutoriales" (click)="editar(i.Titulo,i.Descripcion,i.resumen,i.Tipo)">
+      <div >
+        {{i.Titulo}}<br>
+        {{i.resumen}}<br>
+        {{i.Descripcion}}<br>
+        {{i.Tipo}}
+       
+        <input type="button" (click)="deleteContenido(i.Titulo)" value="Borrar">
+        
+      </div>
+      </div>
+  
+  </md-tab>
+
+</md-tab-group>
+
+</div>
+
+<div class="col-sm-3">
+  <h3>Actualizar</h3>
+      <md-input-container>
+        <input mdInput type="text" [(ngModel)]="tutorialCambio.Titulo" name="Titulo" placeholder="Titulo"><br>  
+      </md-input-container> 
+      
+      <md-input-container class="full-width">
+        <textarea mdInput mdTextareaAutosize  type="text" [(ngModel)]="tutorialCambio.resumen" name="resumen" placeholder="Resumen"></textarea>  <br>
+      </md-input-container>
+
+      <md-input-container class="full-width">
+        <textarea mdInput mdTextareaAutosize  type="text" [(ngModel)]="tutorialCambio.Descripcion" name="Descripcion" placeholder="Descripcion"></textarea>  <br>
+      </md-input-container> 
+     <br>
+      <button md-raised-button (click)="editarContenido()" color="primary" type="submit" >Actualizar</button>
+</div>
+
+</div>
+</div>

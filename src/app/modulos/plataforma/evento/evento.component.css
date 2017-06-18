@@ -1,0 +1,17 @@
+.full-width{
+    width: 100%;
+}
+md-card{
+    background-color: #e6f9ff;
+    margin-bottom: 10px;
+
+}
+md-card-actions{
+    background-color: #80e1ff;
+}
+md-card-header{
+    background-color:  #99e7ff;
+}
+md-card-content{
+    background-color: #b3ecff;
+}

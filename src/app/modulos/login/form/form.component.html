@@ -1,0 +1,16 @@
+<p>
+  LOGIN
+</p>
+
+<form #loginForm="ngForm" (ngSubmit)="onSubmit()" >
+  Nombre : 
+  <input type="text" #username  ngControl="username" [(ngModel)]=log.username name="username" placeholder="Usuario" value="" [autocomplete]="off" required  >
+  <br>
+  Contrasenia: 
+  <input type="password" #clave  ngControl="password" [(ngModel)]=log.password name="password" value="" placeholder="******" [autocomplete]="off" required >
+  
+  <button type="submit">Enviar</button>
+  <button type="button" (click)="getUsers()">Click</button>
+  
+    <md-spinner id="wait"  *ngIf="wait" [attr.color]="green"> </md-spinner>
+</form>

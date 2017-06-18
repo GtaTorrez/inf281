@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 scroll">
+      <h3>Leyes</h3>
+      
+        
+          <div *ngFor="let l of leyes" (click)="getArticulo(idley)">
+          <div >
+            {{l.IDLey}}<br>
+            {{l.resumen}}<br>
+            {{l.Fecha}}<br>
+            <button md-raised-button color="primary" type="button" (click)="getArticulo(idley);">Ver articulos</button>      
+          </div>
+          </div>
+    </div>
+    <div class="col-sm-6 scroll" >
+      <h3>Articulos</h3>
+      
+      
+          <div *ngFor="let a of articulos" >
+          <div >
+            <label for="">{{idley}}</label>
+            <label for="">Articulo: {{a.num}}</label>
+            <p>
+              {{a.contenido}}
+            
+            </p>
+            
+          </div>
+          </div>
+    </div>
+  </div>
+</div>

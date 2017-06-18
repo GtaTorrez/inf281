@@ -1,0 +1,154 @@
+<div class="container">
+<md-tab-group>
+  <md-tab label="Leyes">
+    <h1>Leyes</h1>
+  <div class="row ">
+    <div class="col-sm-3">
+      <h3>Nueva Ley</h3>
+      <form action="" #plataformaForm="ngForm" (ngSubmit)="onSubmit()">
+          <md-input-container>
+            <input mdInput type="text" [(ngModel)]="ley.IDLey" name="idley" placeholder="Nombre o Numero de la Ley"><br>  
+          </md-input-container> 
+          <md-input-container class="full-width">
+            <textarea mdInput mdTextareaAutosize  type="text" [(ngModel)]="ley.resumen" name="resumen" placeholder="Resumen"></textarea>  
+          </md-input-container> <br>
+          
+          <md-input-container>
+            <input mdInput type="date" [(ngModel)]="ley.Fecha" name="Fecha" placeholder="Fecha de la emision de la ley">  
+          </md-input-container> <br>
+          
+
+          
+        
+          <button md-raised-button color="primary" type="submit" >Registrar</button>
+
+    </form>
+          <br>  
+          <div>
+            <label for="">Datos ingresados</label><br>
+              {{ley.IDLey}}
+              {{ley.resumen}}
+              {{ley.Fecha}}
+          </div>
+          <br>
+    </div>
+    <div class="col-sm-6">
+      <h3>Leyes</h3>
+      
+        <button md-raised-button color="primary" type="button" (click)="getLeyesArt()">Obtener Leyes</button>
+          <div *ngFor="let l of leyes" (click)="editarLey(l.IDLey,l.resumen,l.Fecha)">
+          <div >
+            {{l.IDLey}}<br>
+            {{l.resumen}}<br>
+            {{l.Fecha}}<br>
+            
+            <input type="button" (click)="deleteLey(l.IDLey)" value="Borrar">
+            
+          </div>
+          </div>
+    </div>
+
+    <div class="col-sm-3">
+      <h3>Actualizar</h3>
+      <md-input-container>
+            <input mdInput type="text" [(ngModel)]="leyCambio.IDLey" name="Nombre" placeholder="Nombre o Numero de la Ley"><br>  
+          </md-input-container> 
+          <md-input-container class="full-width">
+            <textarea mdInput mdTextareaAutosize  type="text" [(ngModel)]="leyCambio.resumen" name="Descripcion" placeholder="Descripcion"></textarea>  <br>
+          </md-input-container> 
+          
+          <md-input-container>
+            <input mdInput type="text" [(ngModel)]="leyCambio.Fecha" name="Nombre" placeholder="Nombre o Numero de la Ley"><br>  
+          </md-input-container> 
+          
+          <button md-raised-button color="primary" type="submit" (click)="editarLeyes()" >Actualizar</button>
+      </div>
+
+    </div>
+  </md-tab>
+
+
+
+  <md-tab label="Articulos">
+    <h1>Articulos de la ley {{idley}}</h1>
+  <div class="row ">
+    <div class="col-sm-3">
+      <h3>Nuevo Articulo</h3>
+      <form action="" #plataformaForm="ngForm" (ngSubmit)="onSubmitArt()">
+          <md-input-container>
+            <input mdInput type="text" [(ngModel)]="idley" disabled name="idley" placeholder="Nombre o Numero de la Ley"><br>  
+          </md-input-container> 
+          <md-input-container>
+            <input mdInput type="number" [(ngModel)]="articulo.num" name="numero" placeholder="Numero de articulo"><br>  
+          </md-input-container> 
+          <md-input-container class="full-width">
+            <textarea mdInput mdTextareaAutosize  type="text" [(ngModel)]="articulo.contenido" name="contenido" placeholder="Contenido"></textarea>  
+          </md-input-container> <br>
+          
+          <button md-raised-button color="primary" type="submit" >Registrar</button>
+
+    </form>
+          <br>  
+          <div>
+            <label for="">Datos ingresados</label><br>
+                {{idley}}
+                {{articulo.num}}<br>
+                {{articulo.contenido}}<br>
+          </div>
+          <br>
+    </div>
+    <div class="col-sm-6">
+      <h3>Articulos</h3>
+      
+        <button md-raised-button color="primary" type="button" (click)="getArticulo(idley);">Obtener Articulos</button>
+          <div *ngFor="let a of articulos" (click)="editarArticulo(a.num,a.contenido)">
+          <div >
+            {{idley}}
+            {{a.num}}
+            {{a.contenido}}
+            
+            <input type="button" (click)="deleteArticulo(idley,a.num)" name="delArt" value="Borrar">
+            
+          </div>
+          </div>
+    </div>
+
+    <div class="col-sm-3">
+      <h3>Actualizar Articulo</h3>
+          <md-input-container>
+            <input mdInput type="text" [(ngModel)]="idley" disabled name="idleyC" placeholder="Ley"><br>  
+          </md-input-container> 
+          
+          <md-input-container>
+            <input mdInput type="number" [(ngModel)]="articuloCambio.num"  name="numC" placeholder="Numero de articulo"><br>  
+          </md-input-container> 
+          
+
+          <md-input-container class="full-width">
+            <textarea mdInput mdTextareaAutosize  type="text" [(ngModel)]="articuloCambio.contenido" name="contenidoC" placeholder="Contenido del articulo"></textarea>  <br>
+          </md-input-container> 
+          
+          
+          <button md-raised-button color="primary" type="submit" (click)="editarArticulos()" >Actualizar</button>
+      </div>
+
+      <div>
+        {{idley}}
+        {{numArt}}
+        {{articuloCambio.num}}
+        {{articuloCambio.contenido}}
+      </div>
+
+    </div>
+ 
+
+  </md-tab>
+
+
+
+
+</md-tab-group>
+
+
+
+</div>

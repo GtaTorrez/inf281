@@ -1,0 +1,102 @@
+
+<div class="container ">
+  <h1>Contenido</h1>
+  <div class="row ">
+<div class="col-sm-3">
+  <h3>Nuevo Contenido</h3>
+  <form action="" #plataformaForm="ngForm" (ngSubmit)="onSubmit()">
+      <md-input-container>
+        <input mdInput type="text" [(ngModel)]="contnd.Titulo" name="Titulo" placeholder="Titulo"><br>  
+      </md-input-container> 
+      
+      <md-input-container class="full-width">
+        <textarea mdInput mdTextareaAutosize  type="text" [(ngModel)]="contnd.resumen" name="resumen" placeholder="Resumen"></textarea>  <br>
+      </md-input-container>
+
+      <md-input-container class="full-width">
+        <textarea mdInput mdTextareaAutosize  type="text" [(ngModel)]="contnd.Descripcion" name="Descripcion" placeholder="Descripcion"></textarea>  <br>
+      </md-input-container> 
+      
+      <md-select placeholder="Tipo de Actividad" [(ngModel)]="contnd.Tipo" name="tipo">
+        <md-option *ngFor="let tip of tipoCont" [value]="tip.value" >
+          {{ tip.viewValue }}
+        </md-option>
+      </md-select><br>
+      
+     
+      <button md-raised-button color="primary" type="submit" >Registrar</button>
+
+</form>
+      <br>  
+      <div>
+        <label for="">Datos ingresados</label><br>
+        {{contnd.Titulo}}<br>
+        {{contnd.resumen}}<br>
+        {{contnd.Descripcion}}
+        {{contnd.Tipo}}
+      </div>
+      <br>
+</div>
+<div class="col-sm-6">
+  <h3>Actividades</h3>
+<md-tab-group>
+  <md-tab label="Informacion">
+    <button md-raised-button color="primary" type="button" (click)="getContenido()"   >Obtener Eventos</button>
+      <div *ngFor="let i of informaciones" (click)="editar(i.Titulo,i.Descripcion,i.resumen,i.Tipo)">
+      <div >
+        {{i.Titulo}}<br>
+        {{i.resumen}}<br>
+        {{i.Descripcion}}<br>
+       
+        <input type="button" (click)="deleteContenido(i.Titulo)" value="Borrar">
+        
+      </div>
+      </div>
+  
+  </md-tab>
+  <md-tab label="Curiosidades">
+    <button md-raised-button color="primary" type="button" (click)="getContenido()"   >Obtener Eventos</button>
+      <div *ngFor="let c of curiosidades" (click)="editar(c.Titulo,c.Descripcion,c.resumen,c.Tipo)">
+      <div >
+        
+        {{c.Titulo}}<br>
+        {{c.resumen}}<br>
+        {{c.Descripcion}}<br>
+        
+        <input type="button" (click)="deleteContenido(c.Titulo)" value="Borrar">
+        
+      </div>
+      </div>
+
+    </md-tab>
+
+</md-tab-group>
+
+</div>
+
+<div class="col-sm-3">
+  <h3>Actualizar</h3>
+      <md-input-container>
+        <input mdInput type="text" [(ngModel)]="contndCambio.Titulo" name="Titulo" placeholder="Titulo"><br>  
+      </md-input-container> 
+      
+      <md-input-container class="full-width">
+        <textarea mdInput mdTextareaAutosize  type="text" [(ngModel)]="contndCambio.resumen" name="resumen" placeholder="Resumen"></textarea>  <br>
+      </md-input-container>
+
+      <md-input-container class="full-width">
+        <textarea mdInput mdTextareaAutosize  type="text" [(ngModel)]="contndCambio.Descripcion" name="Descripcion" placeholder="Descripcion"></textarea>  <br>
+      </md-input-container> 
+      
+      <md-select placeholder="Tipo de Actividad" [(ngModel)]="contndCambio.Tipo" name="tipo">
+        <md-option *ngFor="let tip of tipoCont" [value]="tip.value" >
+          {{ tip.viewValue }}
+        </md-option>
+      </md-select><br>
+      
+     
+      <button md-raised-button (click)="editarContenido()" color="primary" type="submit" >Actualizar</button>
+</div>
+
+</div>
+</div>

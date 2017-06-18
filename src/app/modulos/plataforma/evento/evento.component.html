@@ -1,0 +1,122 @@
+
+<div class="container ">
+  <h1>Actividades</h1>
+  <div class="row ">
+<div class="col-sm-3">
+  <h3>Nuevo Actividad</h3>
+  <form action="" #plataformaForm="ngForm" (ngSubmit)="postEvento()">
+      <md-input-container>
+        <input mdInput type="text" [(ngModel)]="eve.Nombre" name="Nombre" placeholder="Nombre"><br>  
+      </md-input-container> 
+      <md-input-container class="full-width">
+        <textarea mdInput mdTextareaAutosize  type="text" [(ngModel)]="eve.Descripcion" name="Descripcion" placeholder="Descripcion"></textarea>  <br>
+      </md-input-container> 
+      
+      <md-select placeholder="Tipo de Actividad" [(ngModel)]="eve.Tipo" name="tipo">
+        <md-option *ngFor="let tip of TipoAc" [value]="tip.value" >
+          {{ tip.viewValue }}
+        </md-option>
+      </md-select><br>
+      <label for="">Fecha del Evento</label>
+      <md-input-container class="full-width">
+        <input mdInput   type="date" [(ngModel)]="eve.fechaEvento" name="fecha">  
+      </md-input-container> <br>
+      
+
+     
+      <button md-raised-button color="primary" type="submit" >Registrar</button>
+
+</form>
+      <br> 
+       
+      <div>
+        <label for="">Datos ingresados</label><br>
+        {{eve.Nombre}}<br>
+        {{eve.Descripcion}}<br>
+        {{eve.Tipo}}
+        {{eve.fechaEvento}}
+      </div>
+      <br>
+</div>
+<div class="col-sm-6">
+  <h3>Actividades</h3>
+<md-tab-group>
+  <md-tab label="Eventos">
+    <button md-raised-button color="primary" type="button" (click)="getEventos()"   >Obtener Eventos</button>
+      <div *ngFor="let e of evet" (click)="editar(e.Nombre,e.Descripcion,e.Tipo)">
+        <md-card class="">
+        <md-card-header>
+          <div md-card-avatar class="example-header-image"></div>
+          <md-card-title>Nombre del evento{{e.Nombre}}<br> Fecha del Evento {{e.fechaEvento}}</md-card-title>
+        </md-card-header>
+        <md-card-content>
+          <p>
+            {{e.Descripcion}}<br>
+          </p>
+        </md-card-content>
+        <md-card-actions>
+        <input type="file" ng-form="file" name="file" [multiple]="multiple" #fileInput> 
+        <input type="button" (click)="uploadImagen(e.Nombre)" value="enviar">
+
+        
+          
+        <input type="button" (click)="deleteEvento(e.Nombre)" value="Borrar">
+        
+        </md-card-actions>
+      </md-card>
+      
+      </div>
+  
+  </md-tab>
+  <md-tab label="Retos Colegio">
+    <button md-raised-button color="primary" type="button" (click)="getEventos()"   >Obtener Eventos</button>
+      <div *ngFor="let e of retos" (click)="editar(e.Nombre,e.Descripcion,e.Tipo)">
+      <div >
+        
+        <md-card class="">
+        <md-card-header>
+          <div md-card-avatar class="example-header-image"></div>
+          <md-card-title>Nombre del evento{{e.Nombre}}<br> Fecha del Evento {{e.fechaEvento}}</md-card-title>
+        </md-card-header>
+        <md-card-content>
+          <p>
+            {{e.Descripcion}}<br>
+          </p>
+        </md-card-content>
+        <md-card-actions>
+        <input type="file" ng-form="file" name="file" [multiple]="multiple" #fileInput> 
+        <input type="button" (click)="uploadImagen(e.Nombre)" value="enviar">
+  
+        <input type="button" (click)="deleteEvento(e.Nombre)" value="Borrar">
+        
+        </md-card-actions>
+      </md-card>
+        
+      </div>
+      </div>
+
+  </md-tab>
+</md-tab-group>
+
+</div>
+
+<div class="col-sm-3">
+  <h3>Actualizar</h3>
+  <md-input-container>
+    <input mdInput type="text" [(ngModel)]="eveCambio.Nombre" name="NombreC" placeholder="Nombre"><br>
+  </md-input-container>
+  <md-input-container class="full-width">
+    <textarea mdInput mdTextareaAutosize  type="text" [(ngModel)]="eveCambio.Descripcion" name="DescripcionC" placeholder="Descripcion"></textarea><br>
+  </md-input-container>
+
+  <md-select placeholder="Tipo de Actividad" [(ngModel)]="eveCambio.Tipo" name="TipoC">
+        <md-option *ngFor="let tip of TipoAc" [value]="tip.value" >
+          {{ tip.viewValue }}
+        </md-option>
+  </md-select><br>
+  
+  <button md-raised-button color="primary" type="button" (click)="editarEvento()" >Actualizar</button>
+</div>
+
+</div>
+</div>

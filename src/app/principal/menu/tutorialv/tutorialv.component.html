@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="row">
+    <h3 >Tutoriales</h3>
+    <p>En esta seccion encontraras tutoriales o tips de distintos tipos de area para la madre tierra y no solo eso,
+      también hay tutoriales para realizar cosas interesantes y sobretodo ecologicas.
+    </p>
+  </div>
+<div class="row">
+
+<div class="col-sm-6 scroll">
+    <div class="row">
+         <md-card *ngFor="let i of tutoriales" class="panel panel-default">
+          <md-card-header >
+           <label for="">{{i.Titulo}}</label> 
+          </md-card-header>
+          <div>{{i.Descripcion}}</div>
+         
+          <md-card-content>
+          {{i.resumen}}
+
+          </md-card-content>
+          <md-card-actions>
+            
+        <button type="button" md-raised-button color="primary" (click)="getTutorialPasos(i.Titulo)" > Ver Pasos</button>
+           
+          </md-card-actions>
+        </md-card>  
+     
+</div>
+</div>
+
+      <div  class="col-sm-6 scroll" >
+        <div *ngIf="!UpdatePaso" >
+        <div *ngIf="!isUpPaso">
+          <div  *ngFor="let p of pasos ; index as i"  > 
+           
+            <md-card class="panel panel-default">
+          <md-card-header >
+          <label>Paso: {{p.paso}} {{p.subTitulo}}</label>
+            
+            </md-card-header>
+          <img src="{{p.enlace }}" class="" alt="" width="100%" height="100%" >          
+          <md-card-content>
+         {{p.contenido}}
+          </md-card-content>
+        </md-card>  
+        
+        
+        </div>
+
+        </div>
+        
+        </div>
+      
+
+
+
+      </div>
+  
+
+
+  </div>
+  
+    </div> 
+  

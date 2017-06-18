@@ -6,5 +6,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app works!';
+  title = 'PLATAFORMA';
+  islog:boolean=false;
+  constructor(){
+  
+  if(localStorage.getItem("tipo")===null){
+      localStorage.setItem("tipo","0");
+      localStorage.setItem("islog","false");
+  }else{
+    if(localStorage.getItem("islog")==="false"){
+        this.islog=false;
+    }else{
+        this.islog=true;
+    }
+  }
+  }
 }

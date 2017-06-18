@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="row">
+    <h3 >Eventos</h3>
+    <p>Eventos, encuentros , dias festivos es lo que encontraras en esta seccion para que estes al tanto de las actividades
+      realizadas en nombre del Medio Ambiente y de la madre Tierra
+    </p>
+  </div>
+<div class="row">
+
+<div class="col-sm-6 scroll">
+    <div class="row">
+
+    <md-card *ngFor="let e of evet; index as in; even as par; odd as impar" (click)="verEvento(in)" class="example-card">
+      <md-card-header>
+        <div md-card-avatar class="example-header-image"></div>
+        <md-card-title><label for="">{{e.Nombre}}</label></md-card-title>
+      </md-card-header>
+      
+      <md-card-actions>
+        Fecha: {{e.fechaEvento.substring(0,10)}} 
+        <button md-raised-button color="primary" (click)="verEvento(in)">Mas Informacion</button>
+      </md-card-actions>
+    </md-card>
+
+        
+     
+</div>
+</div>
+
+      <div *ngIf="clicked"  class="col-sm-6 scroll" >
+        
+     <md-card  class="example-card">
+      <md-card-header>
+        <div md-card-avatar class="example-header-image"></div>
+        <md-card-title><label for="">{{eve.Nombre}}</label></md-card-title>
+      </md-card-header>
+      
+      <img md-card-image src="{{eve.imagen[0].enlace}}" width="350px" width="350px">
+      <md-card-content ><p>{{eve.Descripcion}}</p></md-card-content>
+      <md-card-actions>
+        <label for="">Fecha {{e.fechaEvento.substring(0,10)}} </label>
+      </md-card-actions>
+    </md-card>
+
+
+        
+        </div>
+
+    </div>
+        
+</div>
+      
+

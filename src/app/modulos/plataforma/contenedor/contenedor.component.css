@@ -1,0 +1,24 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+.menu {
+    width: 100%;
+    display: flex;
+}
+.menu div {
+    flex: 1;
+}
+.selecAtrib {
+  color: #2f90f1;
+  text-transform: uppercase;
+}
+.titulo{
+  text-transform: uppercase;
+  text-align: center;
+  width: 100%;
+}
+
+.example-sidenav-fab-container {
+  width: 100%;
+  height: auto;
+}

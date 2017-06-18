@@ -1,0 +1,15 @@
+<p>
+  multimedia 
+</p>
+<form action="" (ngSubmit)="onSubmit()"  #multimediaForm="ngForm">
+<label for="">Subir archivos</label>
+<input type="file" value="Subir" [(ngModel)]="img" name="src">
+
+
+<input type="button" (click)="onSubmit()" value="enviar">
+</form>
+
+Subir Stack <br>
+<input type="file" ng-form="file" name="file" [multiple]="multiple" #fileInput> 
+
+<input type="button" (click)="uploadImg()" value="enviar">

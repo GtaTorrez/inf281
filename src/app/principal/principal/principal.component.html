@@ -1,0 +1,92 @@
+<div class="container-fluid row  ">
+<div *ngIf="isLog" class="col-sm-2" >
+  <div class="sidebar-nav-fixed affix">
+  <md-toolbar  >
+    <div class="user">
+      Hola {{nombre}}
+    </div>
+  <md-toolbar-row>
+  <button md-button *ngIf="isLog"  (click)="openLogin()"><md-icon>home</md-icon>{{nomBtn}}</button>  
+  </md-toolbar-row>
+
+  <md-toolbar-row>
+  <button md-button (click)="onclick()" routerLink='/upAdministrador'><md-icon>account_box </md-icon>Administrador</button> 
+  </md-toolbar-row>
+
+  <md-toolbar-row>
+  <button md-button (click)="onclick()" routerLink='/upUsuario'><md-icon>accessibility </md-icon>Usuario</button>
+  </md-toolbar-row>
+
+  <md-toolbar-row>
+  <button md-button (click)="onclick()" routerLink='/leyes'><md-icon>gavel </md-icon>Leyes</button>
+  </md-toolbar-row>
+
+  <md-toolbar-row>
+  <button md-button (click)="onclick()" routerLink='/evento'><md-icon>today </md-icon>Evento</button>
+  </md-toolbar-row>
+
+  <md-toolbar-row>
+  <button md-button (click)="onclick()" routerLink='/multimedia'><md-icon>perm_media </md-icon>Multimedia</button>
+  </md-toolbar-row>
+
+  <md-toolbar-row>
+  <button md-button (click)="onclick()" routerLink='/contenido'><md-icon>local_library </md-icon>Contenido</button>
+  </md-toolbar-row>
+
+  <md-toolbar-row>
+  <button md-button (click)="onclick()" routerLink='/tutorial'><md-icon>turned_in_not </md-icon>Tutorial</button>
+  </md-toolbar-row>
+
+
+  <md-toolbar-row>
+  <button md-button *ngIf="isLog"   (click)="cerrarSesion()"><md-icon>power_settings_new</md-icon>Salir</button>  
+  </md-toolbar-row>
+  
+
+</md-toolbar>
+</div>
+</div>
+<div class="{{clase}} derecha">
+<div  class="">
+  <div class="main-nav">
+    <div *ngIf="isInde" class=" row" >
+    <div class="navbar-header"> 
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only"> ToggleNAvigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>        
+      </button>
+      <a class="navbar-brand" routerLink='/'>
+        <img src="../../../assets/img/logo.jpg" class="img-responsive" alt="" width="100px" height="100px">
+      </a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-right" > 
+          <li class="scroll"><button md-button routerLink='/'  [class.selecMenu]="num==1" (click)="clickMenu(1)"><md-icon>home</md-icon>Inicio</button></li>
+          <li class="scroll"><button md-button routerLink='/leyesv'  [class.selecMenu]="num==2" (click)="clickMenu(2)"><md-icon>gavel </md-icon>Leyes</button></li>
+          <li class="scroll"><button md-button routerLink='/eventov'  [class.selecMenu]="num==3" (click)="clickMenu(3)"><md-icon>today </md-icon>Evento</button></li>
+          <li class="scroll"><button md-button routerLink='/graficas'  [class.selecMenu]="num==4" (click)="clickMenu(4)"><md-icon>trending_up </md-icon>Graficas</button></li>
+          <li class="scroll"><button md-button routerLink='/tutorialv'  [class.selecMenu]="num==5" (click)="clickMenu(5)"><md-icon>turned_in_not </md-icon>Tutoriales</button></li>
+
+
+          <li class="scroll"><button md-button  (click)="openLogin()">Ingrese</button></li>  
+          <li class="scroll"><button md-button  *ngIf="isLog" (click)="cerrarSesion()">Salir</button></li>  
+  
+      </ul>
+
+    </div>
+  </div>
+  </div>
+</div>
+  <section>
+  <div class="row">
+  <router-outlet> </router-outlet>
+  </div>  
+ </section>
+</div>
+
+</div>
+
+
+

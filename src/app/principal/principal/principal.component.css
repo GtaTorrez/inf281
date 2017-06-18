@@ -1,0 +1,65 @@
+
+md-toolbar,button{
+font-size: large !important;  
+
+height: 63px !important;
+
+}
+.row{
+  margin-left:-30px;
+  margin-right:0px;
+}
+.user{
+  background-color: #b3ffb3;/*#64dd17;/*#1faa00; /*#4caf50;*/
+  text-align: center;
+  padding-top: 5%;
+  width: 100%;
+  height: 65%;
+}
+.menu {
+  width: 95%;
+  text-align:center;
+  background-color: #1faa00;/*#64dd17;/*#1faa00; /*#4caf50;*/
+  margin: 0 auto;
+  /*color: white;
+  text-transform:capitalize;
+  font-weight:bold;
+  font-family: georgia, "Times New Roman", Times, serif;*/
+  height: 100px;
+  margin-bottom: 50px;
+}
+.menu div {
+  height: 100px;
+  flex: 1;
+}
+.selecMenu {
+  /*text-align:center;*/
+  text-transform: uppercase;
+  color: #ffffff;/*#33691e;*/
+  font-weight:bold;
+   background: #64dd17;
+}
+li{ background-color: #1faa00;}
+
+
+footer {
+	text-align: center;
+	height: 70px;
+	/*clear: both; /**/
+	/*float: right; /**/
+	padding-top: 20px;
+	font-family: sans-serif;
+	font-weight: normal;
+	font-size: 10px;
+	/*color: #FFFFFF;*/
+	background: #9cff57;
+}
+md-toolbar,md-toolbar-row{
+  background-color: #239023;
+}
+md-toolbar{
+  height: 100%!important;
+}
+.derecha{
+  padding-left:60px !important;
+}

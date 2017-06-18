@@ -1,0 +1,11 @@
+.center{
+    align-items: center;
+}
+.contenido{
+    height: 600px!important;
+    width: 100%;
+}
+md-spinner{
+    width: 35px;
+    float: right;
+}
